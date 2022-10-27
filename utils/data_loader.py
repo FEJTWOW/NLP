@@ -18,6 +18,14 @@ def read_bills(path : str) -> Dict[str, str]:
             bills_dict[filename] = normalize_content(f.read())
     return bills_dict
 
+def read_bills_without_normalize(path : str) -> Dict[str, str]:
+    bills_dict = {}
+    for filename in filter(lambda p: p.endswith("txt"), os.listdir(path)):
+        filepath = os.path.join(path, filename)
+        with open(filepath, mode='r', encoding='UTF-8') as f:
+            bills_dict[filename.replace('.txt','')] = f.read()
+    return bills_dict
+
 if __name__ == '__main__':
     bills_dict = read_bills("/Users/kamil/Documents/NLP/data/first_ex_data/ustawy")
     for filename, content in bills_dict.items():
