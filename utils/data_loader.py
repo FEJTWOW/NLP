@@ -15,7 +15,7 @@ def read_bills(path : str) -> Dict[str, str]:
     for filename in filter(lambda p: p.endswith("txt"), os.listdir(path)):
         filepath = os.path.join(path, filename)
         with open(filepath, mode='r') as f:
-            bills_dict[filename] = normalize_content(f.read())
+            bills_dict[filename.replace('.txt','')] = normalize_content(f.read())
     return bills_dict
 
 def read_bills_without_normalize(path : str) -> Dict[str, str]:
